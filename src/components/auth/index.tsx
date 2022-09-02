@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, TextInput, View} from 'react-native';
+import {Image, TextInput, Text, View, Touchable} from 'react-native';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -7,17 +7,18 @@ import Icon from 'react-native-vector-icons/AntDesign';
 const Auth = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [mode, setMode] = useState<string>('login');
 
   const loginWithEmail = () => {
     console.log('LOGGED IN WITH EMAIL');
   };
 
   const loginWithFacebook = () => {
-    console.log("LOGGED IN WITH FACEBOOK");
+    console.log('LOGGED IN WITH FACEBOOK');
   };
 
   const loginWithGoogle = () => {
-    console.log("LOGGED IN WITH GOOGLE");
+    console.log('LOGGED IN WITH GOOGLE');
   };
 
   return (
@@ -51,7 +52,9 @@ const Auth = () => {
           padding={5}
           margin={5}
           backgroundColor="#42855B">
-          Login with Email & Password
+          <Text style={styles.buttonText}>
+            {mode.charAt(0).toUpperCase() + mode.slice(1)} with Email & Password
+          </Text>
         </Icon.Button>
       </View>
       <View style={styles.buttonContainer}>
@@ -61,7 +64,9 @@ const Auth = () => {
           padding={5}
           margin={5}
           backgroundColor="#3b5998">
-          Login with Facebook
+          <Text style={styles.buttonText}>
+            {mode.charAt(0).toUpperCase() + mode.slice(1)} with Email & Password
+          </Text>
         </Icon.Button>
       </View>
       <View style={styles.buttonContainer}>
@@ -71,9 +76,20 @@ const Auth = () => {
           padding={5}
           margin={5}
           backgroundColor="#4688F1">
-          Login with Google
+          <Text style={styles.buttonText}>
+            {mode.charAt(0).toUpperCase() + mode.slice(1)} with Email & Password
+          </Text>
         </Icon.Button>
       </View>
+      <Text
+        onPress={
+          mode === 'login' ? () => setMode('signup') : () => setMode('login')
+        }
+        style={styles.signUpText}>
+        {mode === 'login'
+          ? "Don't have an account? Sign Up"
+          : 'Already have an account? Login'}
+      </Text>
     </View>
   );
 };
