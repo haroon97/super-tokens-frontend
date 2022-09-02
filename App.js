@@ -7,7 +7,9 @@
  */
 
 import React from 'react';
-import {StyleSheet, Text, useColorScheme, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import Auth from './src/components/auth';
+
 import SuperTokens from 'supertokens-react-native';
 
 SuperTokens.init({
@@ -16,11 +18,7 @@ SuperTokens.init({
 });
 
 const App = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Super Tokens app</Text>
-    </View>
-  );
+  return <Auth />;
 };
 
 const styles = StyleSheet.create({
